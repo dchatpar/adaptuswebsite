@@ -1,17 +1,117 @@
 [build]
-  command = "echo 'Using pre-built Next.js output - skipping build'"
+  command = "echo 'Static deployment - no build needed'"
   publish = ".next/server/app"
 
 [build.environment]
   NODE_VERSION = "20"
-  NEXT_TELEMETRY_DISABLED = "1"
 
-# Copy static files to the right place for Netlify
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+# Route all requests to HTML files (Next.js App Router output)
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
 
-# Handle all routes - the Next.js plugin will serve them from the build output
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/services"
+  to = "/services.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog.html"
+  status = 200
+
+[[redirects]]
+  from = "/careers"
+  to = "/careers.html"
+  status = 200
+
+[[redirects]]
+  from = "/products"
+  to = "/products.html"
+  status = 200
+
+[[redirects]]
+  from = "/software"
+  to = "/software.html"
+  status = 200
+
+[[redirects]]
+  from = "/ai-agents"
+  to = "/ai-agents.html"
+  status = 200
+
+[[redirects]]
+  from = "/industries"
+  to = "/industries.html"
+  status = 200
+
+[[redirects]]
+  from = "/locations"
+  to = "/locations.html"
+  status = 200
+
+[[redirects]]
+  from = "/who-we-are"
+  to = "/who-we-are.html"
+  status = 200
+
+[[redirects]]
+  from = "/distribution"
+  to = "/distribution.html"
+  status = 200
+
+[[redirects]]
+  from = "/manpower"
+  to = "/manpower.html"
+  status = 200
+
+[[redirects]]
+  from = "/marketing"
+  to = "/marketing.html"
+  status = 200
+
+[[redirects]]
+  from = "/msp"
+  to = "/msp.html"
+  status = 200
+
+[[redirects]]
+  from = "/case-studies"
+  to = "/case-studies.html"
+  status = 200
+
+[[redirects]]
+  from = "/newsroom"
+  to = "/newsroom.html"
+  status = 200
+
+[[redirects]]
+  from = "/security"
+  to = "/security.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
+  status = 200
+
 [[redirects]]
   from = "/*"
-  to = "/:splat"
+  to = "/index.html"
   status = 200
