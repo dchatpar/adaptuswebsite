@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>AdaptUs Group</ShortName>
+  <Description>Search AdaptUs Group - Enterprise AI, Software Development & IT Services</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <OutputEncoding>UTF-8</OutputEncoding>
+  <Image width="16" height="16" type="image/png">/images/logo.png</Image>
+  <Url type="text/html" template="/?q={searchTerms}" />
+  <Contact>info@adaptusgroup.com</Contact>
+  <Tags>AI software IT marketing recruitment distribution</Tags>
+  <Developer>AdaptUs Group</Developer>
+</OpenSearchDescription>

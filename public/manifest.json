@@ -1,33 +1,39 @@
 {
     "name": "AdaptUs Group - Enterprise Technology Solutions",
-    "short_name": "AdaptUs Group",
+    "short_name": "AdaptUs",
     "description": "Leading provider of AI agents, custom software development, managed IT services, digital marketing, tech recruitment, and distribution solutions.",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#0A1628",
-    "theme_color": "#0A1628",
+    "theme_color": "#6366f1",
     "orientation": "portrait-primary",
+    "scope": "/",
     "icons": [
         {
-            "src": "/icon-192.png",
+            "src": "/images/logo.png",
             "sizes": "192x192",
             "type": "image/png",
-            "purpose": "any maskable"
+            "purpose": "any"
         },
         {
-            "src": "/icon-512.png",
+            "src": "/images/logo.png",
             "sizes": "512x512",
             "type": "image/png",
-            "purpose": "any maskable"
+            "purpose": "any"
+        },
+        {
+            "src": "/images/logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
         }
     ],
-    "categories": [
-        "business",
-        "productivity",
-        "technology"
-    ],
+    "categories": ["business", "productivity", "technology"],
     "lang": "en-US",
     "dir": "ltr",
-    "scope": "/",
-    "prefer_related_applications": false
+    "prefer_related_applications": false,
+    "launch_handler": {
+        "client_mode": "navigate-existing"
+    },
+    "categories": ["business", "productivity"]
 }

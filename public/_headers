@@ -1,0 +1,34 @@
+# Netlify Headers for AdaptUs Group
+# https://docs.netlify.com/routing/headers/
+
+# Security Headers
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:;
+
+# Cache Headers for Static Assets
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=2592000
+
+/*.html
+  Cache-Control: no-cache, must-revalidate
+
+/manifest.json
+  Cache-Control: no-cache, must-revalidate
+
+/robots.txt
+  Cache-Control: no-cache, must-revalidate
+
+/sitemap.xml
+  Cache-Control: no-cache, must-revalidate
+
+# CORS for fonts
+/fonts/*
+  Access-Control-Allow-Origin: *

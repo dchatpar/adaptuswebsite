@@ -1,0 +1,24 @@
+# Humans.txt for AdaptUs Group
+# https://adaptusgroup.com/humans.txt
+
+/* TEAM */
+  Lead Developer: AdaptUs Group Development Team
+  Contact: info@adaptusgroup.com
+  Website: https://adaptusgroup.com
+  Location: Global (Mumbai, Dubai, Vancouver, Toronto)
+
+/* SITE */
+  Last Updated: 2026-02-27
+  Language: English
+  Do Not Use: AI tools to generate content without human oversight
+
+/* TECHNOLOGY */
+  Framework: Next.js 16
+  Hosting: Netlify
+  CSS: Tailwind CSS v4
+  Animations: Framer Motion, GSAP
+  3D: React Three Fiber
+
+/* CREDITS */
+  Design: AdaptUs Group Creative Team
+  Development: AdaptUs Group Engineering Team

@@ -1,0 +1,18 @@
+# Robots.txt for AdaptUs Group
+# https://adaptusgroup.com
+
+User-agent: *
+Allow: /
+
+# Disallow private/admin areas
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /404.html
+Disallow: /500.html
+
+# Sitemap
+Sitemap: https://adaptusgroup.com/sitemap.xml
+
+# Crawl-delay (optional, for politeness)
+Crawl-delay: 1

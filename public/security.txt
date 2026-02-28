@@ -1,0 +1,24 @@
+# Security Policy for AdaptUs Group
+# https://adaptusgroup.com/security
+
+# Security contact email
+Contact: mailto:security@adaptusgroup.com
+
+# Encryption
+# Please encrypt sensitive communications using PGP
+# Public key available at: https://adaptusgroup.com/.well-known/security.txt.asc
+
+# Preferred languages
+Preferred-Languages: en
+
+# Canonical URL
+Canonical: https://adaptusgroup.com/security.txt
+
+# Policy link
+Policy: https://adaptusgroup.com/privacy
+
+# Expiration
+Expires: 2027-12-31T23:59:59.000Z
+
+# Acknowledgments
+# We appreciate the help of security researchers who responsibly disclose vulnerabilities.
