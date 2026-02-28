@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/services/layout,_N_T_/services/tiktok-marketing/layout,_N_T_/services/tiktok-marketing/page,_N_T_/services/tiktok-marketing"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/services/tiktok-marketing/__PAGE__",
+    "/services/tiktok-marketing",
+    "/services",
+    "/_index",
+    "/_head"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/who-we-are/layout,_N_T_/who-we-are/partnership/layout,_N_T_/who-we-are/partnership/page,_N_T_/who-we-are/partnership"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/who-we-are/partnership/__PAGE__",
+    "/who-we-are/partnership",
+    "/who-we-are",
+    "/_index",
+    "/_head"
+  ]
+}

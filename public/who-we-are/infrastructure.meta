@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/who-we-are/layout,_N_T_/who-we-are/infrastructure/layout,_N_T_/who-we-are/infrastructure/page,_N_T_/who-we-are/infrastructure"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/who-we-are/infrastructure/__PAGE__",
+    "/who-we-are/infrastructure",
+    "/who-we-are",
+    "/_index",
+    "/_head"
+  ]
+}

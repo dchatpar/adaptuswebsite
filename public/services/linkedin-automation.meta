@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/services/layout,_N_T_/services/linkedin-automation/layout,_N_T_/services/linkedin-automation/page,_N_T_/services/linkedin-automation"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/services/linkedin-automation/__PAGE__",
+    "/services/linkedin-automation",
+    "/services",
+    "/_index",
+    "/_head"
+  ]
+}

@@ -1,13 +1,25 @@
-# Netlify configuration - deploy pre-built Next.js static output
+# Netlify configuration - deploy static site from public folder
 [build]
-  command = "echo 'Deploying pre-built static site'"
-  publish = ".next/server/app"
+  command = "echo 'Static deployment - files already prepared'"
+  publish = "public"
 
 [build.environment]
   NODE_VERSION = "20"
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
-# Redirect all routes to index.html (for static SPA behavior)
+# Handle Next.js static files
+[[redirects]]
+  from = "/_next/static/*"
+  to = "/_next/static/:splat"
+  status = 200
+
+# Handle images
+[[redirects]]
+  from = "/images/*"
+  to = "/images/:splat"
+  status = 200
+
+# Redirect all routes to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"

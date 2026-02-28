@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/services/layout,_N_T_/services/digital-ads/layout,_N_T_/services/digital-ads/page,_N_T_/services/digital-ads"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/services/digital-ads/__PAGE__",
+    "/services/digital-ads",
+    "/services",
+    "/_index",
+    "/_head"
+  ]
+}
