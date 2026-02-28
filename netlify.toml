@@ -1,11 +1,15 @@
 [build]
-  command = "echo 'Static deployment - no build needed'"
+  command = "echo 'Pre-built site - deployment only'"
   publish = ".next/server/app"
 
 [build.environment]
   NODE_VERSION = "20"
 
-# Route all requests to HTML files (Next.js App Router output)
+# Disable Next.js plugin to avoid build attempts
+[build.plugins]
+  package = ""
+
+# Route all requests to HTML files
 [[redirects]]
   from = "/"
   to = "/index.html"
