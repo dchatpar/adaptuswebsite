@@ -7,7 +7,7 @@
   NODE_VERSION = "20"
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
-# Handle Next.js static files
+# Handle static assets - map /_next/static/* to /_next/static/*
 [[redirects]]
   from = "/_next/static/*"
   to = "/_next/static/:splat"
@@ -19,7 +19,18 @@
   to = "/images/:splat"
   status = 200
 
-# Redirect all routes to index.html
+# Serve root assets
+[[redirects]]
+  from = "/manifest.json"
+  to = "/manifest.json"
+  status = 200
+
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/favicon.ico"
+  status = 200
+
+# SPA fallback - all routes serve index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"
