@@ -1,4 +1,4 @@
-# Netlify configuration for pre-built Next.js output
+# Netlify configuration - deploy pre-built Next.js static output
 [build]
   command = "echo 'Deploying pre-built static site'"
   publish = ".next/server/app"
@@ -7,7 +7,7 @@
   NODE_VERSION = "20"
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
-# Netlify redirects for SPA behavior
+# Redirect all routes to index.html (for static SPA behavior)
 [[redirects]]
   from = "/*"
   to = "/index.html"
