@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --webpack",
+    "build": "echo 'Using pre-built output - source code not available'",
     "start": "next start",
     "lint": "eslint"
   },

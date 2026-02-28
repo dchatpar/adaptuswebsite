@@ -1,0 +1,17 @@
+[build]
+  command = "echo 'Using pre-built Next.js output - skipping build'"
+  publish = ".next/server/app"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Copy static files to the right place for Netlify
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Handle all routes - the Next.js plugin will serve them from the build output
+[[redirects]]
+  from = "/*"
+  to = "/:splat"
+  status = 200
