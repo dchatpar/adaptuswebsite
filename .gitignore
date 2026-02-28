@@ -1,10 +1,13 @@
 # Dependencies
 node_modules/
 
-# Build output
-.next/
+# Build output - EXCEPT .next which contains pre-built site
+# .next/ is committed for static deployment
 dist/
 build/
+
+# Exclude cache but keep the build output
+.next/cache/
 
 # Environment
 .env
