@@ -1,0 +1,261 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║           ADAPTUSGROUP.CA - COMPLETE DEPLOYMENT PACKAGE                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+PACKAGE CONTENTS
+═══════════════════════════════════════════════════════════════════════════════
+
+  📁 adaptus-deploy/
+  ├── 📄 deploy.sh                    # One-click deployment script
+  ├── 📄 DEPLOYMENT-GUIDE.txt       # This file
+  ├── 📄 package.json               # Node.js dependencies
+  ├── 📄 server.js                  # Custom Next.js server
+  ├── 📄 .next/                     # Pre-built Next.js application
+  │   ├── 📄 server/                # Server-side code
+  │   ├── 📄 static/                # Static assets
+  │   └── 📄 cache/                 # Cached files
+  │
+  └── 📁 public/                    # Static files
+      ├── 📄 images/               # All website images
+      ├── 📄 logo.png              # Company logo
+      └── 📄 *.svg                 # Icons
+
+
+═══════════════════════════════════════════════════════════════════════════════
+QUICK START (NEW SERVER)
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Upload to server:
+   ─────────────────────────────
+   scp adaptus-deploy.tar.gz user@your-server:/root/
+
+2. SSH into server:
+   ─────────────────────────────
+   ssh user@your-server
+   cd /root
+   tar -xzf adaptus-deploy.tar.gz
+   cd adaptus-deploy
+
+3. Run deployment:
+   ─────────────────────────────
+   chmod +x deploy.sh
+   ./deploy.sh
+
+4. Follow prompts:
+   ─────────────────────────────
+   • Enter port (default: 48726)
+   • Enter domain (default: adaptusgroup.ca)
+   • Get SSL certificate (optional)
+
+5. Done! 🎉
+
+
+═══════════════════════════════════════════════════════════════════════════════
+MANUAL DEPLOYMENT (STEP BY STEP)
+═══════════════════════════════════════════════════════════════════════════════
+
+PREREQUISITES:
+  • Ubuntu 22.04+
+  • Node.js 18+
+  • Nginx
+  • Certbot (for SSL)
+  • Domain DNS → Server IP
+
+STEP 1: PREPARE SERVER
+───────────────────────
+  apt update
+  apt install nginx nodejs npm curl -y
+
+STEP 2: UPLOAD FILES
+────────────────────
+  Upload adaptus-deploy.tar.gz to /root/
+  tar -xzf adaptus-deploy.tar.gz
+  cd adaptus-deploy
+
+STEP 3: START APPLICATION
+────────────────────────
+  # Set port
+  export PORT=48726
+
+  # Start in background
+  PORT=$PORT npm start > /root/website.log 2>&1 &
+
+  # Test
+  curl http://localhost:48726
+
+STEP 4: CONFIGURE NGINX
+───────────────────────
+  cat > /etc/nginx/sites-available/adaptusgroup.ca.conf << 'EOF'
+  server {
+      listen 80;
+      server_name adaptusgroup.ca www.adaptusgroup.ca;
+
+      location / {
+          proxy_pass http://localhost:48726;
+          proxy_http_version 1.1;
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+      }
+  }
+  EOF
+
+  ln -sf /etc/nginx/sites-available/adaptusgroup.ca.conf /etc/nginx/sites-enabled/
+  nginx -t
+  systemctl reload nginx
+
+STEP 5: GET SSL (OPTIONAL)
+──────────────────────────
+  apt install certbot python3-certbot-nginx -y
+  certbot --nginx -d adaptusgroup.ca -d www.adaptusgroup.ca \
+      --non-interactive --agree-tos --email admin@adaptusgroup.ca
+
+STEP 6: CREATE SERVICE
+──────────────────────
+  cat > /etc/systemd/system/adaptus-website.service << 'EOF'
+  [Unit]
+  Description=AdaptusGroup Website
+  After=network.target
+
+  [Service]
+  Type=simple
+  User=root
+  WorkingDirectory=/root/adaptus-deploy
+  ExecStart=/usr/bin/node server.js
+  Restart=always
+  Environment=PORT=48726
+  Environment=NODE_ENV=production
+
+  [Install]
+  WantedBy=multi-user.target
+  EOF
+
+  systemctl daemon-reload
+  systemctl enable adaptus-website
+  systemctl start adaptus-website
+
+
+═══════════════════════════════════════════════════════════════════════════════
+MANAGEMENT COMMANDS
+═══════════════════════════════════════════════════════════════════════════════
+
+  systemctl start adaptus-website
+  systemctl stop adaptus-website
+  systemctl restart adaptus-website
+  systemctl status adaptus-website
+  journalctl -u adaptus-website -f
+
+  # Check if running
+  curl http://localhost:48726
+
+  # View logs
+  cat /root/website.log
+
+
+═══════════════════════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════════
+
+SERVICE WON'T START:
+  • Check logs: journalctl -u adaptus-website -n 50
+  • Verify port: ss -tlnp | grep 48726
+  • Kill process: fuser -k 48726/tcp
+
+404 ON PAGES:
+  • The .next folder contains pre-built files
+  • Make sure .next/server/ exists
+  • Check file permissions
+
+SSL ISSUES:
+  • certbot renew --dry-run
+  • Check cert location: /etc/letsencrypt/live/adaptusgroup.ca/
+
+NGINX ERRORS:
+  • nginx -t
+  • systemctl status nginx
+  • cat /var/log/nginx/error.log
+
+
+═══════════════════════════════════════════════════════════════════════════════
+CURRENT SERVER INFO
+═══════════════════════════════════════════════════════════════════════════════
+
+  Domain:          adaptusgroup.ca
+  Container:       adaptus-website (LXD)
+  Container IP:    10.114.128.23
+  Port:            48726
+  Nginx Config:    /etc/nginx/sites-available/adaptusgroup.ca
+
+  OLD SERVER (for reference):
+  • Source: /opt/adaptus-website (in LXD container)
+  • Build:  Pre-compiled .next folder
+  • Status: Running
+
+
+═══════════════════════════════════════════════════════════════════════════════
+IMPORTANT NOTES
+═══════════════════════════════════════════════════════════════════════════════
+
+  ⚠️  This package contains a PRE-BUILT version of the website
+      The source code (.tsx files) is NOT included
+
+  💡  To modify the website, you need the original source files
+      and run: npm run build
+
+  📦  This deployment is for transferring the EXISTING build
+      to a new server
+
+  🔒  SSL certificates are NOT included
+      Run certbot to obtain new certificates
+
+
+═══════════════════════════════════════════════════════════════════════════════
+FILE STRUCTURE
+═══════════════════════════════════════════════════════════════════════════════
+
+  /root/adaptus-deploy/
+  ├── deploy.sh              ← Run this to deploy
+  ├── DEPLOYMENT-GUIDE.txt   ← This file
+  ├── package.json           ← Dependencies
+  ├── server.js              ← Next.js server
+  ├── .next/                 ← Pre-built app
+  │   ├── server/
+  │   │   ├── pages-app.js
+  │   │   ├── pages-router.js
+  │   │   └── pages-manifest.json
+  │   ├── static/
+  │   └── cache/
+  └── public/                ← Static assets
+      ├── images/
+      ├── logo.png
+      └── *.svg
+
+
+═══════════════════════════════════════════════════════════════════════════════
+QUICK REFERENCE
+═══════════════════════════════════════════════════════════════════════════════
+
+  Deploy:        cd /root/adaptus-deploy && ./deploy.sh
+  Start:         systemctl start adaptus-website
+  Stop:          systemctl stop adaptus-website
+  Restart:       systemctl restart adaptus-website
+  Logs:          journalctl -u adaptus-website -f
+  Test URL:      curl http://localhost:48726
+
+  Domain:        adaptusgroup.ca
+  Port:          48726
+  Nginx:         /etc/nginx/sites-available/adaptusgroup.ca
+  Service:       /etc/systemd/system/adaptus-website.service
+
+
+═══════════════════════════════════════════════════════════════════════════════
+PACKAGE INFO
+═══════════════════════════════════════════════════════════════════════════════
+
+  Created:    2026-02-06
+  Type:       Pre-built Next.js 16 application
+  Server:     Node.js custom Express server
+  Mode:       Standalone/Production
+
+═══════════════════════════════════════════════════════════════════════════════
