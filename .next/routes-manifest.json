@@ -1,0 +1,531 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/home(?:/)?$"
+    },
+    {
+      "source": "/services/crm",
+      "destination": "/services/crm-automation",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/services/crm(?:/)?$"
+    },
+    {
+      "source": "/services/msp",
+      "destination": "/services/msp-services",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/services/msp(?:/)?$"
+    },
+    {
+      "source": "/services/distribution",
+      "destination": "/services/logistics",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/services/distribution(?:/)?$"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/:path*",
+      "headers": [
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ],
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+    },
+    {
+      "source": "/images/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ],
+      "regex": "^/images(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+    },
+    {
+      "source": "/_next/static/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ],
+      "regex": "^/_next/static(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+    }
+  ],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/blog/category/[slug]",
+      "regex": "^/blog/category/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/blog/category/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/blog/[slug]",
+      "regex": "^/blog/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/blog/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/case-studies/[slug]",
+      "regex": "^/case\\-studies/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/case\\-studies/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/industries/[slug]",
+      "regex": "^/industries/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/industries/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/locations/[slug]",
+      "regex": "^/locations/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/locations/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/products/[slug]",
+      "regex": "^/products/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/products/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/services/[sector]",
+      "regex": "^/services/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPsector": "nxtPsector"
+      },
+      "namedRegex": "^/services/(?<nxtPsector>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/services/[sector]/[industry]",
+      "regex": "^/services/([^/]+?)/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPsector": "nxtPsector",
+        "nxtPindustry": "nxtPindustry"
+      },
+      "namedRegex": "^/services/(?<nxtPsector>[^/]+?)/(?<nxtPindustry>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/about",
+      "regex": "^/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about(?:/)?$"
+    },
+    {
+      "page": "/ai-agents",
+      "regex": "^/ai\\-agents(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ai\\-agents(?:/)?$"
+    },
+    {
+      "page": "/blog",
+      "regex": "^/blog(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog(?:/)?$"
+    },
+    {
+      "page": "/careers",
+      "regex": "^/careers(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/careers(?:/)?$"
+    },
+    {
+      "page": "/case-studies",
+      "regex": "^/case\\-studies(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/case\\-studies(?:/)?$"
+    },
+    {
+      "page": "/contact",
+      "regex": "^/contact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/contact(?:/)?$"
+    },
+    {
+      "page": "/distribution",
+      "regex": "^/distribution(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/distribution(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/industries",
+      "regex": "^/industries(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/industries(?:/)?$"
+    },
+    {
+      "page": "/industries/energy",
+      "regex": "^/industries/energy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/industries/energy(?:/)?$"
+    },
+    {
+      "page": "/industries/fintech",
+      "regex": "^/industries/fintech(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/industries/fintech(?:/)?$"
+    },
+    {
+      "page": "/industries/healthcare",
+      "regex": "^/industries/healthcare(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/industries/healthcare(?:/)?$"
+    },
+    {
+      "page": "/industries/logistics",
+      "regex": "^/industries/logistics(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/industries/logistics(?:/)?$"
+    },
+    {
+      "page": "/industries/manufacturing",
+      "regex": "^/industries/manufacturing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/industries/manufacturing(?:/)?$"
+    },
+    {
+      "page": "/industries/retail",
+      "regex": "^/industries/retail(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/industries/retail(?:/)?$"
+    },
+    {
+      "page": "/locations",
+      "regex": "^/locations(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/locations(?:/)?$"
+    },
+    {
+      "page": "/locations/calgary",
+      "regex": "^/locations/calgary(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/locations/calgary(?:/)?$"
+    },
+    {
+      "page": "/locations/dubai",
+      "regex": "^/locations/dubai(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/locations/dubai(?:/)?$"
+    },
+    {
+      "page": "/locations/india",
+      "regex": "^/locations/india(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/locations/india(?:/)?$"
+    },
+    {
+      "page": "/locations/mumbai",
+      "regex": "^/locations/mumbai(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/locations/mumbai(?:/)?$"
+    },
+    {
+      "page": "/locations/toronto",
+      "regex": "^/locations/toronto(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/locations/toronto(?:/)?$"
+    },
+    {
+      "page": "/locations/vancouver",
+      "regex": "^/locations/vancouver(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/locations/vancouver(?:/)?$"
+    },
+    {
+      "page": "/manpower",
+      "regex": "^/manpower(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/manpower(?:/)?$"
+    },
+    {
+      "page": "/marketing",
+      "regex": "^/marketing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/marketing(?:/)?$"
+    },
+    {
+      "page": "/msp",
+      "regex": "^/msp(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/msp(?:/)?$"
+    },
+    {
+      "page": "/newsroom",
+      "regex": "^/newsroom(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/newsroom(?:/)?$"
+    },
+    {
+      "page": "/privacy",
+      "regex": "^/privacy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/privacy(?:/)?$"
+    },
+    {
+      "page": "/products",
+      "regex": "^/products(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/products(?:/)?$"
+    },
+    {
+      "page": "/robots.txt",
+      "regex": "^/robots\\.txt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/robots\\.txt(?:/)?$"
+    },
+    {
+      "page": "/security",
+      "regex": "^/security(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/security(?:/)?$"
+    },
+    {
+      "page": "/services/ai-agents",
+      "regex": "^/services/ai\\-agents(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/ai\\-agents(?:/)?$"
+    },
+    {
+      "page": "/services/ai-automation",
+      "regex": "^/services/ai\\-automation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/ai\\-automation(?:/)?$"
+    },
+    {
+      "page": "/services/ai-website-automation",
+      "regex": "^/services/ai\\-website\\-automation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/ai\\-website\\-automation(?:/)?$"
+    },
+    {
+      "page": "/services/content-building",
+      "regex": "^/services/content\\-building(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/content\\-building(?:/)?$"
+    },
+    {
+      "page": "/services/digital-ads",
+      "regex": "^/services/digital\\-ads(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/digital\\-ads(?:/)?$"
+    },
+    {
+      "page": "/services/digital-marketing",
+      "regex": "^/services/digital\\-marketing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/digital\\-marketing(?:/)?$"
+    },
+    {
+      "page": "/services/email-marketing",
+      "regex": "^/services/email\\-marketing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/email\\-marketing(?:/)?$"
+    },
+    {
+      "page": "/services/guerilla-marketing",
+      "regex": "^/services/guerilla\\-marketing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/guerilla\\-marketing(?:/)?$"
+    },
+    {
+      "page": "/services/linkedin-automation",
+      "regex": "^/services/linkedin\\-automation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/linkedin\\-automation(?:/)?$"
+    },
+    {
+      "page": "/services/logistics",
+      "regex": "^/services/logistics(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/logistics(?:/)?$"
+    },
+    {
+      "page": "/services/manpower",
+      "regex": "^/services/manpower(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/manpower(?:/)?$"
+    },
+    {
+      "page": "/services/msp-services",
+      "regex": "^/services/msp\\-services(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/msp\\-services(?:/)?$"
+    },
+    {
+      "page": "/services/orm",
+      "regex": "^/services/orm(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/orm(?:/)?$"
+    },
+    {
+      "page": "/services/political-campaigns",
+      "regex": "^/services/political\\-campaigns(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/political\\-campaigns(?:/)?$"
+    },
+    {
+      "page": "/services/software-dev",
+      "regex": "^/services/software\\-dev(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/software\\-dev(?:/)?$"
+    },
+    {
+      "page": "/services/tiktok-marketing",
+      "regex": "^/services/tiktok\\-marketing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/tiktok\\-marketing(?:/)?$"
+    },
+    {
+      "page": "/services/traditional-media",
+      "regex": "^/services/traditional\\-media(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/traditional\\-media(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/software",
+      "regex": "^/software(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/software(?:/)?$"
+    },
+    {
+      "page": "/terms",
+      "regex": "^/terms(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/terms(?:/)?$"
+    },
+    {
+      "page": "/who-we-are/about",
+      "regex": "^/who\\-we\\-are/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/who\\-we\\-are/about(?:/)?$"
+    },
+    {
+      "page": "/who-we-are/infrastructure",
+      "regex": "^/who\\-we\\-are/infrastructure(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/who\\-we\\-are/infrastructure(?:/)?$"
+    },
+    {
+      "page": "/who-we-are/leadership",
+      "regex": "^/who\\-we\\-are/leadership(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/who\\-we\\-are/leadership(?:/)?$"
+    },
+    {
+      "page": "/who-we-are/partnership",
+      "regex": "^/who\\-we\\-are/partnership(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/who\\-we\\-are/partnership(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

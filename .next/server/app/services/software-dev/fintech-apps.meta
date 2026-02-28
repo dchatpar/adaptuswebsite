@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/services/layout,_N_T_/services/[sector]/layout,_N_T_/services/[sector]/[industry]/layout,_N_T_/services/[sector]/[industry]/page,_N_T_/services/software-dev/fintech-apps"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/services/$d$sector/$d$industry/__PAGE__",
+    "/services/$d$sector/$d$industry",
+    "/services/$d$sector",
+    "/services",
+    "/_index",
+    "/_head"
+  ]
+}

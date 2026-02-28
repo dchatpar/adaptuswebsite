@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/services/layout,_N_T_/services/manpower/layout,_N_T_/services/manpower/page,_N_T_/services/manpower"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/services/manpower/__PAGE__",
+    "/services/manpower",
+    "/services",
+    "/_index",
+    "/_head"
+  ]
+}
